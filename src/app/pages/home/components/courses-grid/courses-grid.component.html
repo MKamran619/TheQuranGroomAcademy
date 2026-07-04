@@ -1,0 +1,94 @@
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16">
+      <div class="divider-gold mx-auto mb-4"></div>
+      <span class="text-sm font-semibold uppercase tracking-[0.2em]" style="color:#c9a227;">Our Programmes</span>
+      <h2 class="font-display text-4xl sm:text-5xl font-bold mt-2 mb-4" style="color:#0f3460;">
+        Courses Designed to <span class="text-gradient">Inspire</span>
+      </h2>
+      <p class="max-w-xl mx-auto text-lg" style="color:#6b7280;">From beginner to confident reciter — structured, expert-led learning at your own pace.</p>
+    </div>
+
+    @if (loading()) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (s of [1,2,3,4,5,6]; track s) {
+          <div class="rounded-2xl overflow-hidden animate-pulse border" style="border-color:#e8e0d0;">
+            <div class="h-52 bg-gray-100"></div>
+            <div class="p-6 space-y-3">
+              <div class="h-5 bg-gray-100 rounded-full w-2/3"></div>
+              <div class="h-4 bg-gray-50 rounded-full w-full"></div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else if (error()) {
+      <p class="text-center py-12" style="color:#ef4444;">{{ error() }}</p>
+    } @else {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (course of courses(); track course.id) {
+          <div class="group relative bg-white rounded-2xl border overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col"
+               style="border-color:#e8e0d0; box-shadow: 0 2px 16px rgba(15,52,96,0.07);"
+               onmouseover="this.style.boxShadow='0 16px 48px rgba(15,52,96,0.15)'; this.style.borderColor='#c9a227';"
+               onmouseout="this.style.boxShadow='0 2px 16px rgba(15,52,96,0.07)'; this.style.borderColor='#e8e0d0';">
+
+            <!-- Cover -->
+            <div class="relative h-52 overflow-hidden" [style]="course.gradient">
+              <img [src]="imageUrl(course.image_key)" [alt]="course.title"
+                   class="absolute inset-0 w-full h-full object-cover object-center opacity-55 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500">
+              <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,52,96,0.5) 0%, transparent 60%);"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-6xl drop-shadow-lg opacity-90">{{ course.icon }}</span>
+              </div>
+              <div class="absolute top-4 left-4">
+                <span class="text-white text-xs font-bold px-3 py-1 rounded-full"
+                      style="background:rgba(201,162,39,0.85); backdrop-filter:blur(4px);">
+                  {{ course.badge }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Body -->
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="font-display text-xl font-bold mb-2 transition-colors" style="color:#0f3460;">{{ course.title }}</h3>
+              <p class="text-sm leading-relaxed mb-5 flex-1" style="color:#6b7280;">{{ course.subtitle }}</p>
+              <div class="flex items-center justify-between pt-4 border-t" style="border-color:#f0ece4;">
+                <span class="font-bold text-sm" style="color:#c9a227;">{{ course.price }}</span>
+                <a routerLink="/contact"
+                   class="inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-200 group/btn"
+                   style="color:#0f3460;">
+                  Enrol now
+                  <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Promo strip -->
+      <div class="mt-14 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border"
+           style="background: linear-gradient(135deg, #faf7f0, #fff8e8); border-color:#e8d99a;">
+        <div>
+          <p class="font-display font-bold text-xl mb-3" style="color:#0f3460;">Special Promotional Offer</p>
+          <div class="flex flex-wrap gap-3">
+            @for (offer of promoOffers; track offer) {
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium rounded-full px-3 py-1.5 border"
+                    style="color:#7a5c10; border-color:#c9a227; background:white;">
+                <span style="color:#c9a227;">✦</span> {{ offer }}
+              </span>
+            }
+          </div>
+        </div>
+        <a routerLink="/contact"
+           class="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap"
+           style="background: linear-gradient(135deg, #0f3460, #1a5276); box-shadow: 0 6px 20px rgba(15,52,96,0.3);">
+          Book Free Trial Class
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    }
+  </div>
+</section>

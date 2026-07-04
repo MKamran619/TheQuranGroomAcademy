@@ -1,0 +1,122 @@
+<section class="py-24 bg-white relative overflow-hidden">
+
+  <!-- Subtle background accents -->
+  <div class="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style="background:rgba(201,162,39,0.05);"></div>
+  <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none" style="background:rgba(15,52,96,0.05);"></div>
+
+  <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-5 gap-12 items-start">
+
+      <!-- Left info panel -->
+      <div class="lg:col-span-2 lg:sticky lg:top-24">
+        <div class="divider-gold mb-4"></div>
+        <span class="text-sm font-semibold uppercase tracking-[0.2em]" style="color:#c9a227;">Free Trial Registration</span>
+        <h2 class="font-display text-4xl font-bold mt-2 mb-4 leading-tight" style="color:#0f3460;">
+          Register for a <span class="text-gradient">Free Trial Class</span>
+        </h2>
+        <p class="text-base leading-relaxed mb-8" style="color:#4a5568;">
+          Begin your Quran learning journey today. Register for a free trial class and experience our teaching methods before enrolling.
+        </p>
+
+        <div class="space-y-4">
+          @for (b of benefits; track b.text) {
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+                   style="background: linear-gradient(135deg, #faf7f0, #f5efe0); border:1px solid #e8d99a;">
+                <svg class="w-4 h-4" fill="none" stroke="#c9a227" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-sm" style="color:#0f3460;">{{ b.title }}</div>
+                <div class="text-xs mt-0.5" style="color:#6b7280;">{{ b.text }}</div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="lg:col-span-3">
+        @if (success()) {
+          <div class="rounded-3xl p-12 text-center border" style="background:white; border-color:#e8d99a; box-shadow: 0 4px 32px rgba(15,52,96,0.08);">
+            <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                 style="background: linear-gradient(135deg, #faf7f0, #f5efe0); border:2px solid #c9a227;">
+              <svg class="w-10 h-10" fill="none" stroke="#c9a227" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-3" style="color:#0f3460;">Request Received!</h3>
+            <p style="color:#4a5568;">We will be in touch within 5 working days to schedule your free evaluation session.</p>
+          </div>
+        } @else {
+          <form (ngSubmit)="submit()" class="rounded-3xl p-8 space-y-5 border"
+                style="background:white; border-color:#e8e0d0; box-shadow: 0 4px 32px rgba(15,52,96,0.07);">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:#4a5568;">Full Name *</label>
+                <input [(ngModel)]="form.fullName" name="fullName" required type="text" placeholder="Aisha Khan"
+                       class="w-full rounded-xl px-4 py-3 text-sm transition border focus:outline-none"
+                       style="border-color:#e8e0d0; background:#faf7f0; color:#2d3748;"
+                       onfocus="this.style.borderColor='#c9a227'; this.style.background='white';"
+                       onblur="this.style.borderColor='#e8e0d0'; this.style.background='#faf7f0';"/>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:#4a5568;">Email Address *</label>
+                <input [(ngModel)]="form.email" name="email" required type="email" placeholder="you@example.com"
+                       class="w-full rounded-xl px-4 py-3 text-sm transition border focus:outline-none"
+                       style="border-color:#e8e0d0; background:#faf7f0; color:#2d3748;"
+                       onfocus="this.style.borderColor='#c9a227'; this.style.background='white';"
+                       onblur="this.style.borderColor='#e8e0d0'; this.style.background='#faf7f0';"/>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:#4a5568;">Phone Number</label>
+                <input [(ngModel)]="form.phone" name="phone" type="tel" placeholder="+44 7700 000000"
+                       class="w-full rounded-xl px-4 py-3 text-sm transition border focus:outline-none"
+                       style="border-color:#e8e0d0; background:#faf7f0; color:#2d3748;"
+                       onfocus="this.style.borderColor='#c9a227'; this.style.background='white';"
+                       onblur="this.style.borderColor='#e8e0d0'; this.style.background='#faf7f0';"/>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:#4a5568;">Country</label>
+                <input [(ngModel)]="form.country" name="country" type="text" placeholder="United Kingdom"
+                       class="w-full rounded-xl px-4 py-3 text-sm transition border focus:outline-none"
+                       style="border-color:#e8e0d0; background:#faf7f0; color:#2d3748;"
+                       onfocus="this.style.borderColor='#c9a227'; this.style.background='white';"
+                       onblur="this.style.borderColor='#e8e0d0'; this.style.background='#faf7f0';"/>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:#4a5568;">Course Interest</label>
+              <select [(ngModel)]="form.courseInterest" name="courseInterest"
+                      class="w-full rounded-xl px-4 py-3 text-sm transition border focus:outline-none"
+                      style="border-color:#e8e0d0; background:#faf7f0; color:#2d3748;"
+                      onfocus="this.style.borderColor='#c9a227'; this.style.background='white';"
+                      onblur="this.style.borderColor='#e8e0d0'; this.style.background='#faf7f0';">
+                <option value="">Select a course...</option>
+                @for (c of courseOptions(); track c) { <option [value]="c">{{ c }}</option> }
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider mb-2" style="color:#4a5568;">Message</label>
+              <textarea [(ngModel)]="form.message" name="message" rows="3" placeholder="Tell us about your learning goals..."
+                        class="w-full rounded-xl px-4 py-3 text-sm transition border focus:outline-none resize-none"
+                        style="border-color:#e8e0d0; background:#faf7f0; color:#2d3748;"
+                        onfocus="this.style.borderColor='#c9a227'; this.style.background='white';"
+                        onblur="this.style.borderColor='#e8e0d0'; this.style.background='#faf7f0';"></textarea>
+            </div>
+            @if (error()) {
+              <p class="text-sm px-4 py-3 rounded-xl border" style="color:#dc2626; background:#fff5f5; border-color:#fecaca;">{{ error() }}</p>
+            }
+            <button type="submit" [disabled]="submitting() || !form.fullName || !form.email"
+                    class="w-full py-4 rounded-xl font-bold text-white text-base disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:-translate-y-0.5"
+                    style="background: linear-gradient(135deg, #0f3460, #1a5276); box-shadow: 0 8px 24px rgba(15,52,96,0.3);">
+              @if (submitting()) { Processing... } @else { Register for Free Trial -> }
+            </button>
+            <p class="text-center text-xs" style="color:#9ca3af;">No spam. No commitment. Cancel anytime.</p>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

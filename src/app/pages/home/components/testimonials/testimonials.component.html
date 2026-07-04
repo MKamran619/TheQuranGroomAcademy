@@ -1,0 +1,87 @@
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16">
+      <div class="divider-gold mx-auto mb-4"></div>
+      <span class="text-sm font-semibold uppercase tracking-[0.2em]" style="color:#c9a227;">Student Stories</span>
+      <h2 class="font-display text-4xl sm:text-5xl font-bold mt-2" style="color:#0f3460;">
+        Voices of Our <span class="text-gradient">Community</span>
+      </h2>
+    </div>
+
+    @if (loading()) {
+      <div class="max-w-3xl mx-auto rounded-3xl p-10 animate-pulse" style="background:#faf7f0;">
+        <div class="flex justify-center gap-1 mb-6">@for (s of [1,2,3,4,5]; track s) { <div class="w-5 h-5 bg-gray-200 rounded"></div> }</div>
+        <div class="space-y-3 mb-8">
+          <div class="h-4 bg-gray-200 rounded-full w-full"></div>
+          <div class="h-4 bg-gray-200 rounded-full w-4/5 mx-auto"></div>
+        </div>
+      </div>
+    } @else if (testimonials().length === 0) {
+      <p class="text-center py-16" style="color:#9ca3af;">No testimonials yet.</p>
+    } @else {
+      <div class="relative max-w-3xl mx-auto">
+        <!-- Large quote mark -->
+        <div class="absolute -top-8 left-6 font-display text-9xl leading-none pointer-events-none select-none" style="color:#e8d99a;">"</div>
+
+        <div class="relative rounded-3xl p-10 sm:p-14 border" style="background:white; border-color:#e8d99a; box-shadow: 0 4px 32px rgba(15,52,96,0.08);">
+
+          <!-- Stars -->
+          <div class="flex justify-center gap-1 mb-8">
+            @for (s of stars(current().rating); track $index) {
+              <svg class="w-5 h-5" fill="#c9a227" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            }
+          </div>
+
+          <!-- Review -->
+          <blockquote class="text-xl sm:text-2xl text-center leading-relaxed font-light mb-10 italic" style="color:#2d3748;">
+            "{{ current().review_text }}"
+          </blockquote>
+
+          <!-- Divider -->
+          <div class="flex items-center gap-4 mb-8">
+            <div class="flex-1 h-px" style="background:#e8d99a;"></div>
+            <div class="w-2 h-2 rounded-full" style="background:#c9a227;"></div>
+            <div class="flex-1 h-px" style="background:#e8d99a;"></div>
+          </div>
+
+          <!-- Student -->
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-white text-lg shadow-md"
+                 style="background: linear-gradient(135deg, #0f3460, #1a5276);">
+              {{ initials(current().student_name) }}
+            </div>
+            <span class="font-display font-semibold text-lg" style="color:#0f3460;">{{ current().student_name }}</span>
+            <span class="text-sm font-medium" style="color:#c9a227;">{{ current().location }}</span>
+          </div>
+        </div>
+
+        <!-- Navigation dots -->
+        <div class="flex items-center justify-center gap-4 mt-8">
+          <button (click)="prev()" class="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200 border-2"
+                  style="border-color:#e8e0d0; color:#0f3460;"
+                  onmouseover="this.style.borderColor='#c9a227'; this.style.background='#faf7f0';"
+                  onmouseout="this.style.borderColor='#e8e0d0'; this.style.background='transparent';">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <div class="flex gap-2">
+            @for (item of testimonials(); track item.student_name; let i = $index) {
+              <button (click)="activeIndex.set(i)"
+                      class="transition-all duration-300 rounded-full"
+                      [style]="i === activeIndex() ? 'width:28px; height:8px; background:#c9a227;' : 'width:8px; height:8px; background:#e8d99a;'">
+              </button>
+            }
+          </div>
+          <button (click)="next()" class="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200 border-2"
+                  style="border-color:#e8e0d0; color:#0f3460;"
+                  onmouseover="this.style.borderColor='#c9a227'; this.style.background='#faf7f0';"
+                  onmouseout="this.style.borderColor='#e8e0d0'; this.style.background='transparent';">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,80 @@
+<section class="py-24 bg-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16">
+      <div class="divider-gold mx-auto mb-4"></div>
+      <span class="text-sm font-semibold uppercase tracking-[0.2em]" style="color:#c9a227;">Why Choose Us</span>
+      <h2 class="font-display text-4xl sm:text-5xl font-bold mt-2 mb-4" style="color:#0f3460;">
+        Learning Without <span class="text-gradient">Compromise</span>
+      </h2>
+      <p class="max-w-xl mx-auto text-lg" style="color:#6b7280;">Everything you need to learn confidently, comfortably, and consistently — for women and children.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @if (loading()) {
+        @for (s of [1,2,3,4,5,6]; track s) {
+          <div class="bg-white rounded-2xl p-7 border animate-pulse" style="border-color:#e8e0d0;">
+            <div class="w-14 h-14 rounded-2xl mb-5" style="background:#f3f0ea;"></div>
+            <div class="h-4 rounded-full w-2/3 mb-3" style="background:#f3f0ea;"></div>
+            <div class="h-3 rounded-full w-full mb-1" style="background:#f3f0ea;"></div>
+            <div class="h-3 rounded-full w-4/5" style="background:#f3f0ea;"></div>
+          </div>
+        }
+      } @else {
+        @for (p of props(); track p.id) {
+          <div class="group relative bg-white rounded-2xl p-7 border transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+               style="border-color:#e8e0d0; box-shadow: 0 2px 12px rgba(15,52,96,0.06);"
+               onmouseover="this.style.boxShadow='0 12px 40px rgba(15,52,96,0.14)'; this.style.borderColor='#c9a227';"
+               onmouseout="this.style.boxShadow='0 2px 12px rgba(15,52,96,0.06)'; this.style.borderColor='#e8e0d0';">
+
+            <!-- Top gold accent line on hover -->
+            <div class="absolute top-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                 style="background: linear-gradient(90deg, #c9a227, #f7c23a);"></div>
+
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5 transition-transform duration-300 group-hover:scale-110"
+                 style="background: linear-gradient(135deg, #faf7f0, #f5efe0); border:1px solid #e8d99a;">
+              {{ p.icon }}
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2" style="color:#0f3460;">{{ p.title }}</h3>
+            <p class="text-sm leading-relaxed" style="color:#6b7280;">{{ p.description }}</p>
+          </div>
+        }
+      }
+    </div>
+
+    <!-- About section -->
+    <div class="mt-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="relative rounded-3xl overflow-hidden border" style="height:420px; border-color:#e8d99a; box-shadow: 0 8px 40px rgba(15,52,96,0.12);">
+        <img [src]="aboutImageUrl()" alt="Mother and child registering"
+             class="w-full h-full object-cover object-center">
+        <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,52,96,0.35) 0%, transparent 50%);"></div>
+      </div>
+      <div>
+        <div class="divider-gold mb-4"></div>
+        <span class="text-sm font-semibold uppercase tracking-[0.2em]" style="color:#c9a227;">About The Academy</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2 mb-6 leading-snug" style="color:#0f3460;">
+          Welcome to <span class="text-gradient">Quran Groom Academy</span>
+        </h2>
+        <p class="leading-relaxed mb-5" style="color:#4a5568;">
+          Quran Groom Academy is a trusted online Quran learning platform dedicated exclusively to
+          <strong style="color:#0f3460;">women and children</strong>. With more than
+          <strong style="color:#0f3460;">4 years of teaching experience</strong>,
+          our qualified female Quran teachers provide personalised one-on-one classes designed according to
+          each student's learning ability and pace.
+        </p>
+        <p class="leading-relaxed mb-8" style="color:#4a5568;">
+          We understand children's psychology and use engaging, interactive teaching methods that make Quran
+          learning enjoyable and effective — whether your goal is Quran reading, Tajweed, memorization, or
+          Islamic studies.
+        </p>
+        <a routerLink="/contact"
+           class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white transition-all duration-200 hover:-translate-y-0.5"
+           style="background: linear-gradient(135deg, #0f3460, #1a5276); box-shadow: 0 6px 20px rgba(15,52,96,0.28);">
+          Start Your Free Trial
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

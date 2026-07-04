@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; @apply text-gray-900 bg-white; }
+  h1,h2,h3 { font-family: 'Playfair Display', serif; }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Playfair Display', serif; }
+
+  /* Navy→Gold gradient text — matches brand */
+  .text-gradient {
+    background: linear-gradient(135deg, #0f3460, #c9a227);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Emerald gradient text — for CTAs */
+  .text-gradient-green {
+    background: linear-gradient(135deg, #059669, #0d9488);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass card for dark sections */
+  .glass {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* Light glass card for light sections */
+  .glass-light {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(15,52,96,0.1);
+  }
+
+  /* Page section hero — dark navy with warm gold accent */
+  .page-hero {
+    background: linear-gradient(135deg, #0f3460 0%, #1a5276 60%, #0f3460 100%);
+  }
+
+  /* Warm cream background for alternating sections */
+  .bg-cream { background-color: #faf7f0; }
+
+  .animate-fade-up { animation: fadeUp 0.6s ease-out both; }
+
+  /* Gold divider line */
+  .divider-gold {
+    height: 3px;
+    width: 48px;
+    background: linear-gradient(90deg, #c9a227, #f7c23a);
+    border-radius: 9999px;
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mobile-menu-enter {
+  animation: slideDown 0.25s ease-out;
+}
+
+/* Decorative Arabic pattern */
+.pattern-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}

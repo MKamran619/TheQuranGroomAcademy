@@ -1,0 +1,118 @@
+<section class="relative overflow-hidden min-h-screen flex items-center bg-white">
+
+  <!-- Soft background pattern -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(15,52,96,0.06) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,162,39,0.07) 0%, transparent 60%);"></div>
+
+  <!-- Top navy bar accent -->
+  <div class="absolute top-0 left-0 right-0 h-1" style="background: linear-gradient(90deg, #0f3460, #c9a227, #059669);"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Text -->
+      <div class="text-center lg:text-left">
+
+        <!-- Top badge -->
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest border"
+             style="background:#faf7f0; border-color:#c9a227; color:#a07c1a;">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span>
+          Exclusively for Women &amp; Children
+        </div>
+
+        <!-- Arabic ayah -->
+        <p class="font-display text-xl mb-4 text-right lg:text-right" dir="rtl" lang="ar" style="color:#c9a227;">
+          رَبِّ زِدْنِي عِلْمًا
+        </p>
+
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] mb-6" style="color:#0f3460;">
+          Welcome to<br>
+          <span class="text-gradient">Quran Groom</span><br>
+          <span class="text-4xl sm:text-5xl" style="color:#1a5276;">Academy</span>
+        </h1>
+
+        <p class="text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10" style="color:#4a5568;">
+          A trusted online Quran learning platform dedicated exclusively to
+          <strong style="color:#0f3460;">women and children</strong>.
+          Qualified female teachers · Personalised one-on-one classes · Learn from the comfort of your home.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a routerLink="/contact"
+             class="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+             style="background: linear-gradient(135deg, #0f3460, #1a5276); box-shadow: 0 8px 24px rgba(15,52,96,0.3);">
+            Register Free Trial
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a routerLink="/courses"
+             class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 border-2 hover:-translate-y-0.5"
+             style="color:#0f3460; border-color:#0f3460; background:transparent;"
+             onmouseover="this.style.background='#0f3460';this.style.color='white'"
+             onmouseout="this.style.background='transparent';this.style.color='#0f3460'">
+            Explore Courses
+          </a>
+        </div>
+
+        <!-- Offers -->
+        <div class="flex flex-wrap gap-2 justify-center lg:justify-start mt-8">
+          @for (offer of offers; track offer) {
+            <span class="inline-flex items-center gap-1.5 text-xs font-medium rounded-full px-3 py-1.5 border"
+                  style="background:#faf7f0; border-color:#e8d99a; color:#7a5c10;">
+              <span style="color:#c9a227;">✦</span> {{ offer }}
+            </span>
+          }
+        </div>
+
+        <!-- Trust badges -->
+        <div class="flex flex-wrap gap-5 justify-center lg:justify-start mt-10 pt-8 border-t" style="border-color:#e8e0d0;">
+          @for (badge of trustBadges; track badge.label) {
+            <div class="flex items-center gap-2 text-sm" style="color:#4a5568;">
+              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="#059669" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>{{ badge.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Right: Image + stats -->
+      <div class="hidden lg:flex flex-col gap-5">
+
+        <!-- Hero image -->
+        <div class="relative rounded-3xl overflow-hidden shadow-card-hover border" style="height:300px; border-color:#e8d99a;">
+          <img [src]="heroImageUrl()" alt="Online Quran class"
+               class="w-full h-full object-cover object-top">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,52,96,0.5) 0%, transparent 50%);"></div>
+          <!-- Live badge -->
+          <div class="absolute bottom-4 left-4 right-4 flex items-center gap-3 rounded-xl px-4 py-2.5"
+               style="background:rgba(255,255,255,0.92); backdrop-filter:blur(8px);">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0"></span>
+            <span class="text-sm font-semibold" style="color:#0f3460;">Live One-to-One Classes · Online</span>
+          </div>
+        </div>
+
+        <!-- Stats grid -->
+        <div class="grid grid-cols-2 gap-4">
+          @for (stat of cards(); track stat.label) {
+            <div class="rounded-2xl p-5 text-center border transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+                 style="background:white; border-color:#e8e0d0; box-shadow: 0 2px 12px rgba(15,52,96,0.07);">
+              <div class="text-2xl mb-2">{{ stat.icon }}</div>
+              <div class="font-display text-2xl font-bold mb-0.5" style="color:#0f3460;">{{ stat.value }}</div>
+              <div class="text-xs font-medium" style="color:#6b7280;">{{ stat.label }}</div>
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom wave -->
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none">
+      <path d="M0 48L1440 48L1440 16C1200 48 960 0 720 16C480 32 240 0 0 16L0 48Z" fill="#faf7f0"/>
+    </svg>
+  </div>
+</section>
