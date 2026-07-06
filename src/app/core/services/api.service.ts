@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SupabaseService } from './supabase.service';
-import { Course, Testimonial, Faq, SiteStat, EvaluationRequest, PricingPlan, WhyChooseUs, SiteImage } from '../models';
+import { Course, Testimonial, Faq, SiteStat, EvaluationRequest, PricingPlan, WhyChooseUs, SiteImage, SiteSetting, NavLink, FooterLink } from '../models';
 import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -74,6 +74,33 @@ export class ApiService {
 
   imageUrl(imageKey: string): string {
     return `${environment.storageBaseUrl}/${imageKey}`;
+  }
+
+  getSiteSettings(): Observable<SiteSetting[]> {
+    return from(
+      this.db.from('site_settings').select('*')
+    ).pipe(map(({ data, error }) => {
+      if (error) throw error;
+      return (data ?? []) as SiteSetting[];
+    }));
+  }
+
+  getNavLinks(): Observable<NavLink[]> {
+    return from(
+      this.db.from('nav_links').select('*').eq('is_active', true).order('sort_order')
+    ).pipe(map(({ data, error }) => {
+      if (error) throw error;
+      return (data ?? []) as NavLink[];
+    }));
+  }
+
+  getFooterLinks(): Observable<FooterLink[]> {
+    return from(
+      this.db.from('footer_links').select('*').eq('is_active', true).order('sort_order')
+    ).pipe(map(({ data, error }) => {
+      if (error) throw error;
+      return (data ?? []) as FooterLink[];
+    }));
   }
 
   submitEvaluationRequest(payload: EvaluationRequest): Observable<void> {

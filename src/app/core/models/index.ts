@@ -84,3 +84,26 @@ export interface AuthUser {
   email: string;
   jwt: string;
 }
+
+export interface SiteSetting {
+  id: number;
+  key: string;
+  value: string;
+}
+
+export interface NavLink {
+  id: number;
+  label: string;
+  path: string;
+  sort_order: number;
+  is_active: boolean;
+}
+
+export interface FooterLink {
+  id: number;
+  section: string;
+  label: string;
+  path: string;
+  sort_order: number;
+  is_active: boolean;
+}
