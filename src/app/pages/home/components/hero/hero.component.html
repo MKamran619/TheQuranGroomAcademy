@@ -83,6 +83,7 @@
         <!-- Hero image -->
         <div class="relative rounded-3xl overflow-hidden shadow-card-hover border" style="height:300px; border-color:#e8d99a;">
           <img [src]="heroImageUrl()" alt="Online Quran class"
+               (error)="$any($event.target).style.display='none'"
                class="w-full h-full object-cover object-top">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,52,96,0.5) 0%, transparent 50%);"></div>
           <!-- Live badge -->

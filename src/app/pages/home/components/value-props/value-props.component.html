@@ -46,6 +46,7 @@
     <div class="mt-20 grid lg:grid-cols-2 gap-12 items-center">
       <div class="relative rounded-3xl overflow-hidden border" style="height:420px; border-color:#e8d99a; box-shadow: 0 8px 40px rgba(15,52,96,0.12);">
         <img [src]="aboutImageUrl()" alt="Mother and child registering"
+             (error)="$any($event.target).style.display='none'"
              class="w-full h-full object-cover object-center">
         <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(15,52,96,0.35) 0%, transparent 50%);"></div>
       </div>
